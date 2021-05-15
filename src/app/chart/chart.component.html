@@ -1,0 +1,22 @@
+<div class='container-fluid'>
+  <div  *ngIf='selectedVal>1;else singleVal'>
+      <!-- <div class='row'>
+        <div class='col-6' *ngFor='let chartElem of finalCollection;let i=index'>
+          <gridster [options]='options[i]'>
+            <div [chart]="chartElem"></div>
+          </gridster>
+        </div>
+      </div> -->
+      <div class='row'>
+          <div class='col-6' *ngFor='let item of layout'>
+            <div [chart]="item"></div>
+          </div>
+      </div>
+
+
+  </div>
+  <ng-template #singleVal>
+    <div [chart]="lineChart"></div>
+  </ng-template>
+
+</div>
