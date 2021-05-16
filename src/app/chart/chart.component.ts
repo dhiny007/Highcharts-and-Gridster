@@ -1,13 +1,12 @@
-import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, ViewEncapsulation} from '@angular/core';
+import { Component, Input, OnInit} from '@angular/core';
 
-import {CompactType, GridsterConfig, GridsterItem, GridsterItemComponent, GridsterPush, GridType} from 'angular-gridster2';
+import {CompactType, GridsterConfig, GridsterItem, GridsterItemComponent, GridType} from 'angular-gridster2';
 import { Chart } from 'angular-highcharts';
 
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
-  styleUrls: ['./chart.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./chart.component.css']
 })
 export class ChartComponent implements OnInit {
   @Input() selectedVal:number;
@@ -32,10 +31,8 @@ export class ChartComponent implements OnInit {
       minItemRows: 1,
       maxItemArea: 2500,
       minItemArea: 1,
-       fixedRowHeight:400,
-      // fixedColWidth:300,
-       keepFixedHeightInMobile:true,
-      // keepFixedWidthInMobile:true,
+      fixedRowHeight:400,
+      keepFixedHeightInMobile:true,
       defaultItemCols: 1,
       defaultItemRows: 1,
       setGridSize: true,
@@ -49,12 +46,6 @@ export class ChartComponent implements OnInit {
         enabled: true
       }
     };
-
-    this.dashboard = [
-      {cols: 1, rows: 1, y: 0, x: 0, initCallback: this.initItem.bind(this)},
-      {cols: 1, rows: 1, y: 0, x: 0}
-
-    ];
   }
 
   lineChart = new Chart({
@@ -211,15 +202,10 @@ export class ChartComponent implements OnInit {
 
   ngOnChanges(){
     this.finalCollection=[];
-    console.log('val',this.selectedVal);
     for(let i=0;i<this.selectedVal;i++){
         this.finalCollection.push(this.chartCollection[i]);
     }
-    console.log('hehehe',this.finalCollection);
-    // this.layout=this.finalCollection;
-    // console.log('layout',this.layout);
   }
-
 
   changedOptions(): void {
     if (this.options.api && this.options.api.optionsChanged) {
@@ -227,33 +213,4 @@ export class ChartComponent implements OnInit {
     }
   }
 
-  removeItem($event: MouseEvent | TouchEvent, item): void {
-    $event.preventDefault();
-    $event.stopPropagation();
-    this.dashboard.splice(this.dashboard.indexOf(item), 1);
-  }
-
-  addItem(): void {
-    this.dashboard.push({x: 0, y: 0, cols: 1, rows: 1});
-  }
-
-  initItem(item: GridsterItem, itemComponent: GridsterItemComponent): void {
-    this.itemToPush = itemComponent;
-  }
-
-  pushItem(): void {
-    const push = new GridsterPush(this.itemToPush); // init the service
-    this.itemToPush.$item.rows += 4; // move/resize your item
-    if (push.pushItems(push.fromNorth)) { // push items from a direction
-      push.checkPushBack(); // check for items can restore to original position
-      push.setPushedItems(); // save the items pushed
-      this.itemToPush.setSize();
-      this.itemToPush.checkItemChanges(this.itemToPush.$item, this.itemToPush.item);
-    } else {
-      this.itemToPush.$item.rows -= 4;
-      push.restoreItems(); // restore to initial state the pushed items
-    }
-    push.destroy(); // destroy push instance
-    // similar for GridsterPushResize and GridsterSwap
-  }
 }

@@ -7,16 +7,4 @@
     </option>
   </select>
 </div>
-<!-- <div class='container-fluid'>
-  <div  *ngIf='selectedValue>1;else singleVal'>
-    <div class='row'>
-      <div class='col-6' *ngFor='let chartElem of finalCollection'>
-        <div [chart]="chartElem"></div>
-      </div>
-    </div>
-  </div>
-  <ng-template #singleVal>
-    <div [chart]="chart"></div>
-  </ng-template>
-</div> -->
 <app-chart [selectedVal]='selectedValue'></app-chart>

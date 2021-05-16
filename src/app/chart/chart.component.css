@@ -8,30 +8,14 @@
   height:100%;
   width:100%;
   min-height:130vh;
-   /*max-height: 130vh; */
-  /* min-width: 100vw; */
-  /* max-width: 160vw; */
 }
 
 gridster-item {
-  /* width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; */
   margin-top: auto;
   margin-bottom: auto;
   min-height: auto;
 }
 
-
-/* @media (max-height:400px){
-  .align{
-    width:100%;
-    height:100%;
-  }
-} */
 
 
 
