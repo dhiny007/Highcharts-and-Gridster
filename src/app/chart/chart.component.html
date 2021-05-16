@@ -1,22 +1,23 @@
-<div class='container-fluid'>
-  <div  *ngIf='selectedVal>1;else singleVal'>
-      <!-- <div class='row'>
-        <div class='col-6' *ngFor='let chartElem of finalCollection;let i=index'>
-          <gridster [options]='options[i]'>
-            <div [chart]="chartElem"></div>
-          </gridster>
-        </div>
-      </div> -->
-      <div class='row'>
-          <div class='col-6' *ngFor='let item of layout'>
-            <div [chart]="item"></div>
-          </div>
-      </div>
-
-
-  </div>
-  <ng-template #singleVal>
-    <div [chart]="lineChart"></div>
-  </ng-template>
-
+<div class="options-header">
+  <button mat-raised-button color="accent" (click)="pushItem()" class="add-button cols-2">
+    Resize first item and push others
+  </button>
+  <button (click)="getItemComponent()" class="add-button cols-2" color="accent" mat-raised-button>
+    Get item component in console
+  </button>
+  <button mat-mini-fab (click)="addItem()" class="add-button cols-2">
+    Add
+  </button>
 </div>
+
+
+<gridster [options]="options" class="align">
+  <gridster-item [item]="item" *ngFor="let item of dashboard">
+    <div class="button-holder">
+      <button mat-mini-fab (mousedown)="removeItem($event, item)"
+              (touchstart)="removeItem($event, item)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </gridster-item>
+</gridster>
