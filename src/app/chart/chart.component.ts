@@ -32,12 +32,16 @@ export class ChartComponent implements OnInit {
       minItemRows: 1,
       maxItemArea: 2500,
       minItemArea: 1,
+       fixedRowHeight:400,
+      // fixedColWidth:300,
+       keepFixedHeightInMobile:true,
+      // keepFixedWidthInMobile:true,
       defaultItemCols: 1,
       defaultItemRows: 1,
       setGridSize: true,
-      fixedColWidth: 250,
-      fixedRowHeight: 250,
-      pushItems: true,
+      swap:true,
+      swapWhileDragging:false,
+      pushItems: false,
       draggable: {
         enabled: true
       },
@@ -48,6 +52,7 @@ export class ChartComponent implements OnInit {
 
     this.dashboard = [
       {cols: 1, rows: 1, y: 0, x: 0, initCallback: this.initItem.bind(this)},
+      {cols: 1, rows: 1, y: 0, x: 0}
 
     ];
   }
@@ -58,6 +63,10 @@ export class ChartComponent implements OnInit {
     },
     title: {
       text: 'Linechart'
+    },
+    legend:{
+      align:'center',
+      verticalAlign:'middle'
     },
     credits: {
       enabled: false
@@ -246,11 +255,5 @@ export class ChartComponent implements OnInit {
     }
     push.destroy(); // destroy push instance
     // similar for GridsterPushResize and GridsterSwap
-  }
-
-  getItemComponent(): void {
-    if (this.options.api && this.options.api.getItemComponent) {
-      console.log(this.options.api.getItemComponent(this.dashboard[0]));
-    }
   }
 }

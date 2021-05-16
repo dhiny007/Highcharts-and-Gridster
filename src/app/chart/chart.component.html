@@ -1,7 +1,7 @@
 <div class='container-fluid'>
-  <button mat-raised-button color="accent" (click)="pushItem()" class="add-button cols-2">
+  <!-- <button mat-raised-button color="accent" (click)="pushItem()" class="add-button cols-2">
     Resize first item and push others
-  </button>
+  </button> -->
   <!-- <button (click)="getItemComponent()" class="add-button cols-2" color="accent" mat-raised-button>
     Get item component in console
   </button>
@@ -11,16 +11,14 @@
 
 
   <gridster [options]="options" class="align">
-    <gridster-item [item]="item" *ngFor="let item of finalCollection">
+    <gridster-item [item]="item" *ngFor="let item of finalCollection" (ngModelChange)="changedOptions()">
       <!-- <div class="button-holder">
         <button (mousedown)="removeItem($event, item)"
                 (touchstart)="removeItem($event, item)">
           Delete
         </button>
       </div> -->
-      <div class='text-center'>
-        <div [chart]='item'></div>
-      </div>
+        <div [chart]='item' class='chart-align'></div>
 
     </gridster-item>
   </gridster>
